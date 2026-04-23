@@ -1,31 +1,30 @@
 pipeline {
-    agent any [cite: 29]
-    stages { [cite: 29]
-        stage('Build') { [cite: 29]
-            steps {
-                echo 'Building Project...' [cite: 29]
-            }
-        }
-        stage('Test') { [cite: 29]
-            steps {
-                echo 'Testing Project...' [cite: 29]
-            }
-        }
-        stage('Deploy') { [cite: 29]
-            steps {
-                echo 'Deploying Project...' [cite: 29]
-            }
-        }
-    } // End of stages [cite: 29]
+    agent any
 
-    post { [cite: 53, 54]
-        always { [cite: 54]
-            // This happens regardless of build success or failure [cite: 54]
-            echo 'Post build condition running' [cite: 54]
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building Project...'
+            }
         }
-        failure { [cite: 54]
-            // This happens only if the build fails [cite: 54]
+        stage('Test') {
+            steps {
+                echo 'Testing Project...'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying Project...'
+            }
+        }
+    } // This brace ends the stages section [cite: 29]
+
+    post {
+        always {
+            echo 'Post build condition running' [cite: 53, 54, 55]
+        }
+        failure {
             echo 'Post Action if Build Failed' [cite: 54]
         }
     }
-} // <--- THIS must be the very last line [cite: 29]
+} // This brace ends the entire pipeline [cite: 28, 29]
