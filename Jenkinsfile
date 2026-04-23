@@ -21,10 +21,12 @@ pipeline {
 
     post {
         always {
-            echo 'Post build condition running' [cite: 53, 54, 55]
+            // This action will happen always regardless of the result of build
+            echo 'Post build condition running'
         }
         failure {
-            echo 'Post Action if Build Failed' [cite: 54]
+            // This action will happen only if the build has failed
+            echo 'Post Action if Build Failed'
         }
     }
 } // This brace ends the entire pipeline [cite: 28, 29]
