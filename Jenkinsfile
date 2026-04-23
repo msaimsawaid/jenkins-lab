@@ -1,3 +1,4 @@
+def flag = true
 pipeline {
     agent any
 
@@ -8,6 +9,9 @@ pipeline {
             }
         }
         stage('Test') {
+            when {
+                expression { flag == true }
+            }
             steps {
                 echo 'Testing Project...'
             }
