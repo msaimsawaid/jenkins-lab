@@ -1,14 +1,14 @@
-def flag = true // From Step 8
+def flag = true 
 
 pipeline {
     agent any
 
-    // Step 9: Define custom environment variables [cite: 68]
+    // Step 9: Define environment variables
     environment {
-        NEW_VERSION = '1.3.0' 
+        NEW_VERSION = '1.3.0'
     }
 
-    // Step 10: Define build parameters [cite: 93]
+    // Step 10: Define build parameters
     parameters {
         booleanParam(name: 'executeTests', defaultValue: true, description: 'Check to run the Test stage')
     }
@@ -16,13 +16,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building Project...'
-                // Using the environment variable [cite: 71]
-                echo "Building version ${env.NEW_VERSION}" 
+                // Using the environment variable from Step 9
+                echo "Building version ${env.NEW_VERSION}"
             }
         }
         stage('Test') {
-            // Combined Conditionals (Step 8 & 10) [cite: 58, 94]
+            // Step 8 & 10: Conditional execution using 'when'
             when {
                 expression { flag == true && params.executeTests == true }
             }
@@ -30,6 +29,12 @@ pipeline {
                 echo 'Testing Project...'
             }
         }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying Project...'
+            }
+        }
+    }
 
     post {
         always {
