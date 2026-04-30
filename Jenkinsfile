@@ -1,6 +1,4 @@
-// Added by: Muhammad Saim Sawaid
-// Roll Number: 23i-2117
-// Contribution: Added Jenkins build step
+
 def flag = true 
 
 pipeline {
